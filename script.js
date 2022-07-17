@@ -3,9 +3,7 @@ let storedN = {
     value: NaN,
     lastOp: null,
 }
-let memorizedN = 0;
 let signFlag = false;
-let memFlag = false;
 
 
 eventSetup();
@@ -13,13 +11,26 @@ eventSetup();
 
 
 
-function display(){
+function display(once){
     //display currentN and M flag
-    let d;
+    let d, disp;
+    if(once === true){
+        disp = storedN.value.toString();
+        currentN = "0";
+    } else{disp=currentN;}
     d = document.querySelector(".display");
-    d.textContent = currentN;
-    d = document.querySelector(".memory span");
-    memorizedN != 0 ? d.textContent="M" : d.textContent="";
+    console.log(disp)
+    if (disp.length>10){
+        let x = disp.split(".");
+        if(x[0].length>10){
+            d.textContent = parseFloat(disp).toPrecision(1);
+        } else{
+            d.textContent = parseFloat(disp).toFixed(10-x[0].length);
+        }
+    } else{
+        d.textContent = disp;
+    }
+    
 }
 
 function keyPressed(e){
@@ -48,18 +59,6 @@ function addDot(){
     display();
 }
 
-function clearMemory(){
-    memorizedN = 0;
-    display();
-}
-function displayMemory(){
-    currentN = memorizedN.toString();
-    display();
-}
-function addToMemory(){
-    memorizedN += parseFloat(currentN);
-    display();
-}
 function clear(){
     currentN = "0";
     storedN.value = NaN;
@@ -110,13 +109,24 @@ function exec(op){
     } else if(!isNaN(storedN.value) && storedN.lastOp){
         storedN.value = storedN.lastOp(storedN.value, c);
         storedN.lastOp = op;
-        displayOnce();
+        display(true);
     }
 }
 function add(x,y){return x+y;}
 function subtract(x,y){return x-y}
 function multiply(x,y){return x*y}
 function divide(x,y){return x/y}
+
+function factorial(e){
+    x=parseInt(currentN);
+    for(let i=x-1; i>0; i--){
+        x*=i;
+    }
+    currentN = x.toString();
+    display();
+    storedN.value=parseFloat(currentN);
+    currentN = "";
+}
 
 function displayOnce(){
     let d;
@@ -140,11 +150,7 @@ function eventSetup(){
 
     document.querySelector(".dot").addEventListener("click", addDot);
 
-    document.querySelector(".memClear").addEventListener("click", clearMemory);
-
-    document.querySelector(".memDisplay").addEventListener("click", displayMemory);
-
-    document.querySelector(".memAdd").addEventListener("click", addToMemory);
+    document.querySelector(".factorial").addEventListener("click", factorial);
 
     document.querySelector(".clear").addEventListener("click", clear);
 

@@ -3,76 +3,92 @@
 }
 
 body {
-    height: 100vh;
     display: flex;
-    justify-content: center;
+    height:100vh;
+    flex-direction: column;
+    justify-content: flex-end;
+    background-color: #C7CCE8;
+}
+main{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
     align-items: center;
+}
+footer{
+    margin-top: auto;
+    text-align: center;
+    color: #44589c;
+    font-weight: 700;
+    font-size: 2rem;
+    text-shadow: 0 0 black;
+}
+a{
+    text-decoration: none;
+    transition: all 0.1s ease-in;
+}
+a:hover{
+    color:rgb(179, 58, 78);
 }
 
 .calculator{
+    margin-top:10vh;
     display: flex;
-    background-color: rgb(17, 95, 17);
+    background-color: #8E9DCC;
     padding: 1.5rem;
     flex-direction: column;
     border-radius: 1rem;
     box-sizing: border-box;
     border-style: solid;
-    border-color: rgb(13, 173, 194);
+    border-color: #7D84B2;
     border-width: 0.5rem;
-}
-.memory {
-    min-height: 1rem;
-    font-size: 1rem;
-    background-color: grey;
+    min-height: 50vh;
+    box-shadow: 1rem 1rem black;
 }
 .memory span{
     margin-left: 1rem;
 }
 .display {
     min-height: 5rem;
-    font-size: 4rem;
+    font-size: 5rem;
     display: flex;
     justify-content: flex-end;
     align-items: flex-start;
-    background-color: grey;
+    background-color: #D9DBF1;
+    border-radius: 1rem;
+    border-style:solid;
+    border-color: #7D84B2;
+    box-sizing: border-box;
 }
 .keyboard {
-    display: flex;
-    flex-direction: column;
-
-}
-.topTools {
-    display: flex;
-}
-.topTools button {
-    flex:1;
-}
-.bottomContainer {
-    display: flex;
-
-}
-.numbers {
+    margin-top:1rem;
     display: flex;
     flex-direction: column;
     flex:1;
 }
-.numbers .row {
+.row {
     display: flex;
-    width: 100%;
-}
-.numbers button {
     flex:1;
-}
-.sideTools {
-    display: flex;
-    flex-direction: column;
-    width: 20%;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
 }
 
+.top.tool{
+    background-color: #EAF7CA;
+}
+.side.tool{
+    background-color: #DBF4A7;
+}
 button {
+    font-size: 2rem;
     min-width: 5rem;
     min-height: 3rem;
+    border-radius: 30%;
+    margin: 0.3rem;
+    transition: all 0.1s ease-in;
 }
-.sideTools button {
-    min-height:20%;
+button:hover{
+    background-color: rgb(208, 212, 237);
+    transform: scale(1.1);
+    box-shadow: 0.2rem 0.2rem black;
 }
