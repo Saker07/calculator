@@ -10,19 +10,47 @@
 <body>
     <script src="script.js" defer></script>
     <div class="calculator">
+        <div class="memory"><span></span></div>
         <div class="display">
             0
         </div>
         <div class="keyboard">
             <div class="topTools">
-                toptools
+                <button class="tool memClear">MC</button>
+                <button class="tool memDisplay">M</button>
+                <button class="tool memAdd">M+</button>
+                <button class="tool clear">C</button>
+                <button class="tool delete">D</button>
             </div>
-            <div class="numbersContainer">
+            <div class="bottomContainer">
                 <div class="numbers">
-                    1
+                    <div class="row">
+                        <button class="key number">7</button>
+                        <button class="key number">8</button>
+                        <button class="key number">9</button>
+                    </div>
+                    <div class="row">
+                        <button class="key number">4</button>
+                        <button class="key number">5</button>
+                        <button class="key number">6</button>
+                    </div>
+                    <div class="row">
+                        <button class="key number">1</button>
+                        <button class="key number">2</button>
+                        <button class="key number">3</button>
+                    </div>
+                    <div class="row">
+                        <button class="key sign">+/-</button>
+                        <button class="key number">0</button>
+                        <button class="key dot">.</button>
+                    </div>
                 </div>
                 <div class="sideTools">
-                    sidetools
+                    <button class="tool divide">/</button>
+                    <button class="tool multiply">*</button>
+                    <button class="tool subtract">-</button>
+                    <button class="tool add">+</button>
+                    <button class="tool operate">=</button>
                 </div>
             </div>
         </div>
