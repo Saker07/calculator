@@ -36,8 +36,8 @@ function display(once){
 function keyPressed(e){
     //adds the digit to currentN and displays it
     let key;
-    key=e.target;
-    currentN = currentN === "0" ? key.textContent : currentN + key.textContent;
+    key=e;
+    currentN = currentN === "0" ? e : currentN + e;
     display();
 }
 
@@ -75,10 +75,8 @@ function del(){
     display();
 }
 
-function opPressed(e){
+function opPressed(op){
     //if + - * /, display stored, store currentN, currentN=0
-    let op;
-    op=e.target.classList[1];
     switch (op){
         case "add":
             op = add;
@@ -140,11 +138,44 @@ function operate(){
     storedN.lastOp = null;
     currentN = "";
 }
-
+function evaluateKey(e){
+    let key;
+    key = e.key;
+    op = "";
+    if(parseInt(key)>=0 && parseInt(key)<10){
+        keyPressed(key);
+    }else if(key==="Backspace"){
+        del();
+    }else if(key==="Delete"){
+        clear();
+    }else if(key==="Enter"){
+        operate();
+    }
+    else{
+        switch(key){
+            case "+":
+                op = "add";
+                break;
+            case "-":
+                op = "subtract";
+                break;
+            case "*":
+                op = "multiply";
+                break;
+            case "/":
+                op="divide";
+                break;
+        }
+        opPressed(op);
+    }
+}
 function eventSetup(){
     let evs;
     evs = document.querySelectorAll(".number");
-    evs.forEach(item => item.addEventListener("click", keyPressed));
+    evs.forEach(item => item.addEventListener("click", e=> keyPressed(e.target.textContent)));
+
+    document.addEventListener("keydown", e => evaluateKey(e))
+    document.addEventListener("keydown", e => console.log(e.key))
 
     document.querySelector(".sign").addEventListener("click", toggleSign);
 
@@ -156,13 +187,13 @@ function eventSetup(){
 
     document.querySelector(".delete").addEventListener("click", del);
 
-    document.querySelector(".divide").addEventListener("click", opPressed);
+    document.querySelector(".divide").addEventListener("click", e => opPressed(e.target.classList[1]));
 
-    document.querySelector(".multiply").addEventListener("click", opPressed);
+    document.querySelector(".multiply").addEventListener("click", e => opPressed(e.target.classList[1]));
 
-    document.querySelector(".add").addEventListener("click", opPressed);
+    document.querySelector(".add").addEventListener("click", e => opPressed(e.target.classList[1]));
 
-    document.querySelector(".subtract").addEventListener("click", opPressed);
+    document.querySelector(".subtract").addEventListener("click", e => opPressed(e.target.classList[1]));
 
     document.querySelector(".operate").addEventListener("click", operate);
 }
